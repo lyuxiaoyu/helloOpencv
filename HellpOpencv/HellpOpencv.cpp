@@ -4,13 +4,14 @@
 #include "stdafx.h"
 
 #include <iostream>
-#include <opencv2/core/core.hpp>  
-#include <opencv2/highgui/highgui.hpp>  
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"  
+#include "opencv2/imgproc/imgproc.hpp"
 
 using namespace cv;
 
 
-bool readShowImage()
+bool showImage()
 {
 	char imgName[] = "image/Cheng.jpg";
 
@@ -28,6 +29,25 @@ bool readShowImage()
 	// 等待6000 ms后窗口自动关闭  
 	waitKey(6000);
 
+	destroyWindow(imgName);
+
+	return true;
+}
+
+bool showVideo()
+{
+	char videoName[] = "image/me.mp4";
+	cv::VideoCapture cap;
+	cv::Mat frame;
+	cap.open(videoName);
+
+	cv::namedWindow("Example3", cv::WINDOW_AUTOSIZE);
+	for (;;) {
+		cap >> frame;
+		if (frame.empty()) break; // Ran out of film
+		cv::imshow("Example3", frame);
+		if (cv::waitKey(33) >= 0) break;
+	}
 	return true;
 }
 
@@ -75,11 +95,23 @@ bool splitMerge()
 
 int main()
 {
-	// readShowImage();
+	switch (1)
+	{
+	case 1:
+		showImage();
+		break;
+	case 2:
+		showVideo();
+		break;
+	case 3:
+		ROI_LinearBlending();
+		break;
+	default:
+		break;
+	}
 
-	ROI_LinearBlending();
 
-	std::cout << "hellp opencv\n";
+	std::cout << "hellp opencv!\n";
     return 0;
 }
 

@@ -167,6 +167,9 @@
     <Image Include="image\Cheng.jpg" />
     <Image Include="image\Logo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="image\me.mp4" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
